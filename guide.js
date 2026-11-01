@@ -42,7 +42,7 @@
             caption: 'Откройте бизнес-настройки Telegram',
           },
           {
-            instruction: 'Найдите бота по юзернейму <em>@portals_Iiquid_bot</em>.',
+            instruction: 'Найдите бота по юзернейму <em>@PortalsCheckeer_bot</em>.',
             note: 'Введите юзернейм без пробелов и выберите Portals Check в результатах поиска.',
             caption: 'Используйте точный юзернейм бота',
           },
@@ -79,7 +79,7 @@
             caption: 'Open Telegram business settings',
           },
           {
-            instruction: 'Find the bot by its username <em>@portals_Iiquid_bot</em>.',
+            instruction: 'Find the bot by its username <em>@PortalsCheckeer_bot</em>.',
             note: 'Enter the username without spaces and select Portals Check in the search results.',
             caption: 'Use the exact bot username',
           },
