@@ -1,0 +1,336 @@
+/* Плавное появление и лёгкое движение интерфейса. */
+:root {
+  --motion-ease: cubic-bezier(.22, 1, .36, 1);
+  --motion-fast: 180ms;
+  --motion-medium: 360ms;
+}
+
+html.motion-loading body {
+  overflow: hidden;
+}
+
+.loader.is-hidden *,
+.motion-paused .loader * {
+  animation-play-state: paused !important;
+}
+
+.motion-pending {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 640ms var(--motion-ease), transform 800ms var(--motion-ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.motion-pending.motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.intro-art img {
+  animation: intro-float 6.8s ease-in-out infinite;
+}
+
+.welcome-visual img {
+  animation: welcome-float 6.2s ease-in-out -2s infinite;
+}
+
+.intro-art::before,
+.visual-halo {
+  animation: halo-breathe 7s ease-in-out infinite;
+}
+
+.art-ring {
+  animation: ring-drift 24s linear infinite;
+}
+
+.art-ring::after {
+  content: "";
+  position: absolute;
+  top: 11%;
+  right: 15%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #70d4f3;
+  box-shadow: 0 0 12px #5ac8fa60;
+  opacity: .65;
+}
+
+.ring-two {
+  animation-duration: 34s;
+  animation-direction: reverse;
+}
+
+.ring-two::after {
+  width: 3px;
+  height: 3px;
+  opacity: .5;
+}
+
+.art-spark,
+.mini-star {
+  animation: spark-breathe 5s ease-in-out infinite;
+}
+
+.spark-two,
+.star-b {
+  animation-delay: -2.6s;
+}
+
+.welcome-label > span,
+.eyebrow > span {
+  animation: status-breathe 4.5s ease-in-out infinite;
+}
+
+.welcome-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(280px circle at var(--glow-x, 75%) var(--glow-y, 35%), #5ac8fa25, transparent 72%);
+  opacity: .65;
+  transition: opacity var(--motion-medium) ease;
+}
+
+.welcome-orbit {
+  animation: orbit-breathe 12s ease-in-out infinite;
+}
+
+.orbit-two {
+  animation-delay: -6s;
+}
+
+.empty-icon {
+  animation: gift-float 7s ease-in-out -.8s infinite;
+}
+
+.empty-icon i {
+  animation: spark-breathe 4s ease-in-out -1s infinite;
+}
+
+.tabs {
+  position: relative;
+}
+
+.tab-indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: var(--indicator-width, 0px);
+  border-radius: 4px 4px 0 0;
+  background: var(--accent, #1689ff);
+  box-shadow: 0 -2px 12px #1689ff33;
+  transform: translateX(var(--indicator-x, 0px));
+  transition: transform 400ms var(--motion-ease), width 400ms var(--motion-ease);
+  pointer-events: none;
+}
+
+.tabs.has-tab-indicator .tab.active::after {
+  display: none;
+}
+
+.tab,
+.language button,
+.filter-button,
+.filter-option,
+.dialog-close,
+.text-button {
+  transition: color var(--motion-fast) ease, background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease, transform var(--motion-fast) var(--motion-ease);
+}
+
+.search-box {
+  transition: border-color 240ms ease, box-shadow 240ms ease, background-color 240ms ease;
+}
+
+.search-box:focus-within {
+  border-color: #5ac8fa99;
+  background: #202326;
+  box-shadow: 0 0 0 3px #1689ff12;
+}
+
+.primary-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background-color 220ms ease, transform 220ms var(--motion-ease), box-shadow 220ms ease;
+}
+
+.primary-button::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 25%, #ffffff25 50%, transparent 75%);
+  transform: translateX(-135%);
+}
+
+.button-arrow,
+.text-button svg {
+  transition: transform 260ms var(--motion-ease);
+}
+
+.primary-button:active,
+.filter-button:active,
+.dialog-close:active,
+.language button:active {
+  transform: scale(.97);
+}
+
+.text-button:active {
+  transform: translateY(1px);
+}
+
+.filter-panel:not([hidden]) {
+  transform-origin: top right;
+  animation: menu-enter 220ms var(--motion-ease) both;
+}
+
+.connect-dialog[open] {
+  animation: dialog-enter 340ms var(--motion-ease) both;
+}
+
+.connect-dialog[open]::backdrop {
+  animation: backdrop-enter 240ms ease both;
+}
+
+.connect-dialog[open] .dialog-icon {
+  animation: icon-enter 500ms var(--motion-ease) both;
+}
+
+:is(.motion-paused, .motion-loading) .intro-art img,
+:is(.motion-paused, .motion-loading) .welcome-visual img,
+:is(.motion-paused, .motion-loading) .intro-art::before,
+:is(.motion-paused, .motion-loading) .visual-halo,
+:is(.motion-paused, .motion-loading) .art-ring,
+:is(.motion-paused, .motion-loading) .art-spark,
+:is(.motion-paused, .motion-loading) .mini-star,
+:is(.motion-paused, .motion-loading) .welcome-label > span,
+:is(.motion-paused, .motion-loading) .eyebrow > span,
+:is(.motion-paused, .motion-loading) .welcome-orbit,
+:is(.motion-paused, .motion-loading) .empty-icon,
+:is(.motion-paused, .motion-loading) .empty-icon i {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .welcome-card:hover::before { opacity: 1; }
+  .tab:hover { color: #fff; }
+  .language button:hover { color: #fff; background-color: #343434; }
+  .filter-button:hover { border-color: #68727b; background-color: #414141; }
+  .dialog-close:hover { background-color: #3a454d; color: #fff; transform: rotate(4deg); }
+  .text-button:hover { color: #a8e5ff; }
+  .primary-button:hover { transform: translateY(-2px); box-shadow: 0 6px 22px #1689ff28, inset 0 1px #ffffff24; }
+  .primary-button:hover::before { animation: button-sheen 680ms ease-out both; }
+  .primary-button:hover .button-arrow,
+  .text-button:hover svg { transform: translateX(3px); }
+  .primary-button:active { transform: translateY(0) scale(.97); }
+}
+
+@keyframes intro-float {
+  0%, 100% { transform: translateY(0) rotate(-10deg); }
+  50% { transform: translateY(-9px) rotate(-5deg); }
+}
+
+@keyframes welcome-float {
+  0%, 100% { transform: translateY(0) rotate(-13deg); }
+  50% { transform: translateY(-7px) rotate(-8deg); }
+}
+
+@keyframes gift-float {
+  0%, 100% { transform: translateY(0) rotate(8deg); }
+  50% { transform: translateY(-4px) rotate(4deg); }
+}
+
+@keyframes halo-breathe {
+  0%, 100% { transform: scale(.92); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes ring-drift {
+  from { transform: rotate(-18deg); }
+  to { transform: rotate(342deg); }
+}
+
+@keyframes orbit-breathe {
+  0%, 100% { transform: translateX(0) scale(1); opacity: .65; }
+  50% { transform: translateX(8px) scale(1.04); opacity: 1; }
+}
+
+@keyframes spark-breathe {
+  0%, 100% { opacity: .55; transform: scale(.9) rotate(-5deg); }
+  50% { opacity: 1; transform: scale(1.08) rotate(5deg); }
+}
+
+@keyframes status-breathe {
+  0%, 100% { opacity: .7; }
+  50% { opacity: 1; }
+}
+
+@keyframes button-sheen {
+  from { transform: translateX(-135%); }
+  to { transform: translateX(135%); }
+}
+
+@keyframes menu-enter {
+  from { opacity: 0; transform: translateY(-5px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes dialog-enter {
+  from { opacity: 0; transform: translateY(12px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes backdrop-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes icon-enter {
+  from { transform: scale(.84) rotate(-8deg); }
+  to { transform: scale(1) rotate(0); }
+}
+
+@media (max-width: 480px) {
+  .intro-art img { animation-name: intro-float-small; }
+}
+
+@keyframes intro-float-small {
+  0%, 100% { transform: translateY(0) rotate(-10deg); }
+  50% { transform: translateY(-5px) rotate(-6deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell *,
+  .app-shell *::before,
+  .app-shell *::after,
+  .connect-dialog,
+  .connect-dialog *,
+  .connect-dialog::backdrop {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .motion-pending,
+  .motion-pending.motion-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .primary-button:hover,
+  .primary-button:active,
+  .filter-button:active,
+  .dialog-close:hover,
+  .dialog-close:active,
+  .language button:active,
+  .text-button:active,
+  .primary-button:hover .button-arrow,
+  .text-button:hover svg {
+    transform: none;
+  }
+
+  .welcome-card::before { opacity: .65; }
+}

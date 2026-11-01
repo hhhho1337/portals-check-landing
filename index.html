@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#141414">
+  <title>Portals Check — подарки и ликвидность</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="landing.css">
+  <link rel="stylesheet" href="motion.css">
+  <link rel="stylesheet" href="inventory.css">
+  <link rel="stylesheet" href="guide.css">
+</head>
+<body>
+  <main class="loader" id="loader" role="status" aria-label="Загрузка">
+    <div class="stars" id="stars" aria-hidden="true"></div>
+    <div class="logo" id="logo" aria-hidden="true"></div>
+    <div class="art" id="art" aria-hidden="true">
+      <img class="gradient" src="assets/loader-gradient-DQp7i-wi.webp" alt="" draggable="false">
+      <img class="pepe" src="assets/loader-pepe-8Fw6OUOI.webp" alt="" draggable="false">
+    </div>
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Ход загрузки">
+      <div class="progress-fill" id="progress-fill"><span></span></div>
+    </div>
+  </main>
+
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-diamond" viewBox="0 0 24 24"><path d="M5 8 8.4 4h7.2L19 8l-7 11L5 8Z"/><path d="m5 8 7 2 7-2M8.4 4 12 10l3.6-6M12 10v9"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><path d="M4 10h16v10H4zM3 7h18v3H3zM12 7v13"/><path d="M12 7c-1.2-4.8-6.5-4.8-6.5-2 0 2 3.5 2 6.5 2Zm0 0c1.2-4.8 6.5-4.8 6.5-2 0 2-3.5 2-6.5 2Z"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l4-4 3 2 5-6"/><path d="M17 7h3v3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M14 7l5 5-5 5"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 7V5a2 2 0 0 1 2-2h12M4 7h15a1 1 0 0 1 1 1v11H6a2 2 0 0 1-2-2V7Zm16 4h-5a2 2 0 0 0 0 4h5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.9 6.1L20 10l-6.1 1.9L12 18l-1.9-6.1L4 10l6.1-1.9L12 2ZM19 15l.7 2.3L22 18l-2.3.7L19 21l-.7-2.3L16 18l2.3-.7L19 15Z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Portals Check — главная" data-aria-label-en="Portals Check — home">
+        <svg class="portal-logo" aria-hidden="true" width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27155 0.0117206C6.06337 0.0231874 5.58268 0.087402 5.33591 0.13671C4.20144 0.362607 3.20382 0.830456 2.31846 1.55287C2.13017 1.70653 1.72667 2.09984 1.56177 2.29134C0.92436 3.0321 0.472913 3.86345 0.195729 4.80832C0.0202962 5.4046 -0.00777302 5.62705 0.00158339 6.29901C0.00509205 6.54441 0.0109398 7.23127 0.0144485 7.82411C0.0179571 8.41695 0.0226353 9.17835 0.026144 9.51548C0.0296526 9.8526 0.0343308 10.5418 0.0378395 11.0463C0.060061 14.468 0.0659087 15.0001 0.0857911 15.1159C0.108013 15.2466 0.151286 15.3762 0.198068 15.4576C0.354788 15.7248 0.627293 15.8957 1.01909 15.9748C1.13371 15.9966 1.184 16 1.44715 16C1.76293 16 1.88924 15.9885 2.20736 15.9301C2.5208 15.8727 2.77225 15.789 3.00265 15.664C3.20498 15.5539 3.57222 15.3429 3.67397 15.2776C3.77222 15.2145 3.90087 15.1365 4.20729 14.9531C4.39208 14.843 4.73593 14.6721 4.9558 14.5804C5.30901 14.4336 5.74408 14.3293 6.13237 14.2972C6.35926 14.2777 7.18263 14.2891 7.35923 14.3132C7.71594 14.3614 8.06213 14.4531 8.37089 14.5804C8.58843 14.671 8.93345 14.8418 9.11941 14.9531C9.42583 15.1365 9.55448 15.2145 9.65272 15.2776C9.75447 15.3429 10.1217 15.5539 10.324 15.664C10.5544 15.789 10.8059 15.8727 11.1193 15.9301C11.4375 15.9885 11.5638 16 11.8795 16C12.1427 16 12.193 15.9966 12.3076 15.9748C12.6994 15.8957 12.9719 15.7248 13.1286 15.4576C13.1754 15.3762 13.2187 15.2466 13.2409 15.1159C13.2608 15.0001 13.2666 14.468 13.2889 11.0463C13.2924 10.5418 13.297 9.8526 13.3006 9.51548C13.3041 9.17835 13.3087 8.41695 13.3122 7.82411C13.3158 7.23127 13.3216 6.54441 13.3251 6.29901C13.3345 5.62705 13.3064 5.4046 13.131 4.80832C12.8538 3.86345 12.4023 3.0321 11.7649 2.29134C11.6 2.09984 11.1965 1.70653 11.0082 1.55287C10.3404 1.00819 9.64103 0.624052 8.83287 0.359167C8.39429 0.214684 8.0212 0.129829 7.52297 0.0621748C7.08088 0.00140035 6.70779 -0.0135066 6.27155 0.0117206ZM7.07269 1.84528C8.55685 1.97714 9.79307 2.61126 10.5708 3.6387C10.9907 4.19255 11.2515 4.80488 11.4059 5.59953C11.4562 5.85525 11.455 5.79447 11.4597 9.89388L11.4644 13.8098L11.4363 13.8706C11.3813 13.9899 11.2819 14.0392 11.0959 14.038C10.8246 14.0357 10.5217 13.9084 10.1626 13.6447C9.88546 13.4406 9.74745 13.2881 9.63869 13.0645C9.496 12.7721 9.49834 12.8007 9.50302 11.8089C9.50419 11.3513 9.5077 10.9259 9.51121 10.8628C9.51705 10.7264 9.5346 8.7816 9.5346 8.21972C9.5346 7.85622 9.53226 7.81264 9.5077 7.68651C9.40829 7.16935 9.18724 6.7359 8.85158 6.39304C8.58609 6.12357 8.30657 5.9401 7.95687 5.80594C7.57794 5.66031 7.22356 5.60527 6.66335 5.60527C6.10313 5.60527 5.74876 5.66031 5.36982 5.80594C5.02013 5.9401 4.74061 6.12357 4.47512 6.39304C4.13946 6.7359 3.91841 7.16935 3.819 7.68651C3.79444 7.81264 3.7921 7.85622 3.7921 8.21972C3.7921 8.7816 3.80964 10.7264 3.81549 10.8628C3.819 10.9259 3.82251 11.3513 3.82368 11.8089C3.82836 12.8007 3.83069 12.7721 3.68801 13.0645C3.57924 13.2881 3.44123 13.4406 3.16405 13.6447C2.805 13.9084 2.50208 14.0357 2.23075 14.038C2.04479 14.0392 1.94538 13.9899 1.89041 13.8706L1.86234 13.8098L1.86702 9.89388C1.8717 5.79447 1.87053 5.85525 1.92082 5.59953C2.02491 5.05944 2.15005 4.68448 2.36525 4.2625C2.75705 3.49421 3.34884 2.89335 4.13946 2.45761C4.74061 2.12736 5.52304 1.90261 6.2774 1.84413C6.36394 1.83725 6.45868 1.83037 6.48792 1.82808C6.56861 1.8212 6.92182 1.83152 7.07269 1.84528ZM6.90311 7.33677C7.20485 7.35741 7.33233 7.40557 7.48203 7.55464C7.61653 7.68995 7.67618 7.82755 7.69255 8.04771C7.70425 8.1899 7.72062 9.35609 7.73466 11.0578C7.74167 11.8501 7.7405 11.9476 7.72413 12.0118C7.66331 12.2423 7.46332 12.4521 7.22122 12.5404C7.12298 12.5771 6.98498 12.5886 6.6423 12.5886C6.3195 12.5886 6.20839 12.5783 6.10313 12.5393C5.86338 12.4521 5.66338 12.2412 5.60257 12.0118C5.58268 11.935 5.58385 11.5119 5.61075 9.18294C5.62362 8.13257 5.6318 7.94337 5.66689 7.84131C5.75344 7.59592 5.95694 7.40672 6.18383 7.35855C6.32184 7.32989 6.6423 7.31957 6.90311 7.33677Z" fill="white"></path><path d="M18.5457 1.47969H24.1074C26.8596 1.47969 28.7422 3.32656 28.7422 6.05469C28.7422 8.73594 26.7927 10.5734 24.0023 10.5734H21.0112V15.0078H18.5457V1.47969ZM21.0112 3.50469V8.56719H23.448C25.2064 8.56719 26.2385 7.66719 26.2385 6.05469C26.2385 4.39531 25.2351 3.50469 23.4576 3.50469H21.0112Z" fill="white"></path><path d="M34.6257 15.2141C31.4912 15.2141 29.5991 13.2078 29.5991 9.87969C29.5991 6.57031 31.5199 4.54531 34.6257 4.54531C37.741 4.54531 39.6523 6.56094 39.6523 9.87969C39.6523 13.2078 37.7506 15.2141 34.6257 15.2141ZM34.6257 13.2641C36.2789 13.2641 37.2154 12.0266 37.2154 9.87969C37.2154 7.74219 36.2694 6.49531 34.6257 6.49531C32.9724 6.49531 32.0264 7.74219 32.0264 9.87969C32.0264 12.0266 32.9724 13.2641 34.6257 13.2641Z" fill="white"></path><path d="M41.2259 15.0078V4.75156H43.5098V6.34531H43.6723C43.959 5.33281 45.0866 4.58281 46.434 4.58281C46.778 4.58281 47.1985 4.62031 47.4183 4.68594V6.84219C47.2367 6.77656 46.606 6.71094 46.2047 6.71094C44.6661 6.71094 43.5958 7.64844 43.5958 9.08281V15.0078H41.2259Z" fill="white"></path><path d="M49.7851 2.23906H52.1455V4.81719H54.3816V6.67344H52.1455V11.7078C52.1455 12.7203 52.5851 13.1703 53.5789 13.1703C53.9134 13.1703 54.0949 13.1516 54.3816 13.1234V14.9422C54.0376 15.0078 53.598 15.0547 53.1393 15.0547C50.7407 15.0547 49.7851 14.2578 49.7851 12.2703V6.67344H48.1318V4.81719H49.7851V2.23906Z" fill="white"></path><path d="M59.5102 13.3484C60.9436 13.3484 62.0139 12.4391 62.0139 11.2484V10.4328L59.6535 10.5828C58.3252 10.6672 57.704 11.1359 57.704 11.9703C57.704 12.8328 58.459 13.3484 59.5102 13.3484ZM58.8125 15.1766C56.7962 15.1766 55.3532 13.9766 55.3532 12.1016C55.3532 10.2453 56.7771 9.17656 59.319 9.02656L62.0139 8.86719V8.00469C62.0139 7.00156 61.3258 6.43906 60.0453 6.43906C58.9559 6.43906 58.2105 6.81406 57.9907 7.50781H55.7546C55.9457 5.69844 57.6754 4.54531 60.16 4.54531C62.8453 4.54531 64.3552 5.82969 64.3552 8.00469V15.0078H62.0712V13.6016H61.9088C61.3258 14.5953 60.1791 15.1766 58.8125 15.1766Z" fill="white"></path><path d="M66.4926 15.0078V0.785938H68.8625V15.0078H66.4926Z" fill="white"></path><path d="M70.8088 7.68594C70.8088 5.82969 72.529 4.54531 74.9945 4.54531C77.4791 4.54531 79.0368 5.62344 79.2088 7.48906H76.9822C76.8102 6.76719 76.1126 6.30781 75.004 6.30781C73.9242 6.30781 73.1119 6.81406 73.1119 7.55469C73.1119 8.13594 73.6088 8.49219 74.66 8.72656L76.5044 9.13906C78.5016 9.57969 79.4286 10.4234 79.4286 11.9328C79.4286 13.9016 77.5842 15.2141 74.9754 15.2141C72.3665 15.2141 70.7228 14.1078 70.5413 12.2422H72.8825C73.1119 13.0016 73.8477 13.4516 75.0327 13.4516C76.2272 13.4516 77.0586 12.9359 77.0586 12.1766C77.0586 11.5953 76.6095 11.2297 75.6156 11.0141L73.7617 10.5922C71.7549 10.1422 70.8088 9.23281 70.8088 7.68594Z" fill="white"></path></svg>
+        <span class="brand-check">Check</span>
+      </a>
+      <div class="topbar-right">
+        <div class="language" role="group" aria-label="Язык" data-aria-label-en="Language"><button type="button" class="active" data-lang="ru" aria-pressed="true">RU</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+      </div>
+    </header>
+
+    <main class="page" id="home">
+      <div class="page-intro"><div><div class="eyebrow"><span></span> PORTALS CHECK</div><h1><span data-en="Your gifts and liquidity">Подарки и ликвидность</span><br><span data-en="in one place.">в одном месте.</span></h1><p data-en="Connect the Telegram business bot to load your Portals gifts and keep the collection close at hand.">Подключите бизнес-бота Telegram, чтобы загрузить подарки Portals и держать коллекцию под рукой.</p></div><div class="intro-art" aria-hidden="true"><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div><img src="assets/icon-blue-hand-B1FDRe71.webp" alt=""><span class="art-spark spark-one">✦</span><span class="art-spark spark-two">✧</span></div></div>
+      <div class="workspace">
+        <div class="workspace-head"><div><div class="section-kicker" data-en="YOUR SPACE">ВАШЕ ПРОСТРАНСТВО</div><h2><span data-en="Collection">Коллекция</span> <span class="count" id="inventory-count">0</span></h2></div><div class="balance" role="group" aria-label="Подарков в коллекции" data-aria-label-en="Gifts in collection"><svg aria-hidden="true"><use href="#i-gift"/></svg><span id="inventory-balance">0</span></div></div>
+        <nav class="tabs" role="tablist" aria-label="Разделы коллекции" data-aria-label-en="Collection sections" aria-orientation="horizontal">
+          <button class="tab active" id="tab-gifts" type="button" role="tab" data-tab="gifts" aria-selected="true" aria-controls="panel-gifts" tabindex="0"><svg><use href="#i-gift"/></svg><span data-en="Gifts">Подарки</span></button>
+          <button class="tab" id="tab-liquidity" type="button" role="tab" data-tab="liquidity" aria-selected="false" aria-controls="panel-liquidity" tabindex="-1"><svg><use href="#i-chart"/></svg><span data-en="Liquidity">Ликвидность</span></button>
+          <button class="tab" id="tab-sell" type="button" role="tab" data-tab="sell" aria-selected="false" aria-controls="panel-sell" tabindex="-1"><svg><use href="#i-arrow"/></svg><span data-en="Sell">Продать</span></button>
+          <button class="tab" id="tab-portfolio" type="button" role="tab" data-tab="portfolio" aria-selected="false" aria-controls="panel-portfolio" tabindex="-1"><svg><use href="#i-wallet"/></svg><span data-en="Portfolio">Портфель</span></button>
+        </nav>
+        <div class="workspace-body">
+          <section class="welcome-card">
+            <div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div>
+            <div class="welcome-content"><div class="welcome-label"><span></span> PORTALS</div><h3><span data-en="Hello">Привет</span> <span>👋</span></h3><p data-en="Connect the business bot and Portals Check will load your gifts to check their liquidity and value.">Подключите бизнес-бота — Portals Check загрузит ваши подарки, чтобы проверить их ликвидность и стоимость.</p><div class="welcome-actions"><button class="primary-button" type="button" data-connect><svg><use href="#i-spark"/></svg><span data-en="Connect business bot">Подключить бизнес-бота</span> <svg class="button-arrow"><use href="#i-arrow"/></svg></button></div></div>
+            <div class="welcome-visual" aria-hidden="true"><div class="visual-halo"></div><img src="assets/icon-blue-hand-B1FDRe71.webp" alt=""><span class="mini-star star-a">✦</span><span class="mini-star star-b">✦</span></div>
+          </section>
+          <section class="tab-panel" id="panel-gifts" role="tabpanel" aria-labelledby="tab-gifts" data-panel="gifts" tabindex="0">
+            <div class="tools-row">
+              <label class="search-box"><svg><use href="#i-search"/></svg><input id="gift-search" type="search" placeholder="Поиск по подаркам" data-placeholder-en="Search gifts" autocomplete="off" aria-label="Поиск по подаркам" data-aria-label-en="Search gifts"><span>⌘ K</span></label>
+              <div class="filter-wrap"><button class="filter-button" id="filter-toggle" type="button" aria-expanded="false" aria-controls="filter-panel"><svg><use href="#i-filter"/></svg><span data-en="Filters">Фильтры</span></button><div class="filter-panel" id="filter-panel" hidden><div class="filter-title" data-en="Show">Показывать</div><button type="button" class="filter-option active" data-filter="all" data-en="All gifts">Все подарки</button><button type="button" class="filter-option" data-filter="liquid" data-en="Liquidity ≥75%">Ликвидность ≥75%</button></div></div>
+            </div>
+            <div id="inventory-status" class="inventory-status" role="status" aria-live="polite"></div>
+            <div id="gift-grid" class="gift-grid" hidden></div>
+            <div class="empty-state" id="gift-empty"><div class="empty-icon"><svg><use href="#i-gift"/></svg><i></i><b></b></div><h3 data-en="Your collection starts in Telegram">Коллекция начинается в Telegram</h3></div>
+            <div class="empty-state no-results" id="gift-no-results" hidden><div class="empty-icon"><svg><use href="#i-search"/></svg></div><h3 data-en="No gifts found">Подарки не найдены</h3><p data-en="Try another name or change the filter.">Попробуйте другое название или измените фильтр.</p></div>
+          </section>
+          <section class="tab-panel" id="panel-liquidity" role="tabpanel" aria-labelledby="tab-liquidity" data-panel="liquidity" tabindex="0" hidden>
+            <div class="panel-heading"><h3 data-en="Liquidity">Ликвидность</h3></div>
+            <div id="liquidity-list" class="liquidity-list" hidden></div>
+            <div class="empty-state" id="liquidity-empty"><div class="empty-icon"><svg><use href="#i-chart"/></svg><i></i><b></b></div><h3 data-en="No gifts to analyze yet">Пока нечего анализировать</h3></div>
+          </section>
+          <section class="tab-panel" id="panel-sell" role="tabpanel" aria-labelledby="tab-sell" data-panel="sell" tabindex="0" hidden><div class="empty-state"><div class="empty-icon"><svg><use href="#i-arrow"/></svg><i></i><b></b></div><h3 data-en="Selling is not connected">Продажа пока не подключена</h3><p data-en="Selling and transferring gifts requires a separate Telegram integration.">Для продажи и передачи подарков нужна отдельная интеграция с Telegram.</p><button type="button" class="text-button" data-connect><span data-en="About integration">Об интеграции</span> <svg><use href="#i-arrow"/></svg></button></div></section>
+          <section class="tab-panel" id="panel-portfolio" role="tabpanel" aria-labelledby="tab-portfolio" data-panel="portfolio" tabindex="0" hidden>
+            <div class="panel-heading"><h3 data-en="Your collection">Ваша коллекция</h3><p data-en="Gifts loaded from your Telegram bot.">Подарки, загруженные через Telegram-бота.</p></div>
+            <div id="portfolio-summary" hidden></div>
+            <div class="empty-state" id="portfolio-empty"><div class="empty-icon"><svg><use href="#i-wallet"/></svg><i></i><b></b></div><h3 data-en="Your portfolio is empty">Портфель пока пуст</h3></div>
+          </section>
+        </div>
+      </div>
+      <footer><span>PORTALS CHECK</span><span data-en="Gifts. Liquidity. Simply.">Подарки. Ликвидность. Всё просто.</span></footer>
+    </main>
+  </div>
+  <dialog id="connect-dialog" class="guide-dialog" aria-labelledby="guide-title">
+    <div class="guide-shell" data-guide-step="1">
+      <aside class="guide-visual" aria-hidden="true">
+        <div class="guide-glow"></div>
+        <img class="guide-gift" src="assets/icon-blue-hand-B1FDRe71.webp" alt="">
+        <div class="guide-phone">
+          <div class="guide-phone-bar"><span>9:41</span><span>● ● ●</span></div>
+          <div class="guide-phone-title" id="guide-phone-title">Telegram для бизнеса</div>
+          <div class="guide-phone-screen">
+            <div class="guide-screen-step" data-screen-step="1">
+              <div class="guide-phone-row"><span class="guide-row-icon">◎</span><span id="guide-profile-label">Профиль</span><b>›</b></div>
+              <div class="guide-phone-row is-highlight"><span class="guide-row-icon">◌</span><span><strong id="guide-bots-label">Чат-боты</strong><small id="guide-business-note">Бизнес-настройки</small></span><b>›</b></div>
+              <div class="guide-phone-row"><span class="guide-row-icon">＋</span><span id="guide-replies-label">Быстрые ответы</span><b>›</b></div>
+            </div>
+            <div class="guide-screen-step" data-screen-step="2">
+              <div class="guide-search"><svg><use href="#i-search"/></svg><span>@PortalsCheckeer_bot</span></div>
+              <div class="guide-bot-result"><img src="assets/icon-tg-CWJGwFas.webp" alt=""><span><strong>Portals Check</strong><small>@PortalsCheckeer_bot</small></span><b id="guide-bot-label">БОТ</b></div>
+            </div>
+            <div class="guide-screen-step" data-screen-step="3">
+              <div class="guide-add-card"><img src="assets/icon-tg-CWJGwFas.webp" alt=""><strong>Portals Check</strong><small>@PortalsCheckeer_bot</small><span id="guide-add-label">Добавить</span></div>
+            </div>
+            <div class="guide-screen-step" data-screen-step="4">
+              <p id="guide-permissions-label">РАЗРЕШЕНИЯ</p>
+              <div class="guide-toggle-row"><span id="guide-messages-label">Сообщения</span><i class="is-on"></i></div>
+              <div class="guide-toggle-row"><span id="guide-profile-access-label">Профиль</span><i></i></div>
+              <div class="guide-toggle-row"><span id="guide-gifts-access-label">Подарки</span><i></i></div>
+            </div>
+          </div>
+        </div>
+        <p class="guide-visual-caption" id="guide-visual-caption">Откройте бизнес-настройки Telegram</p>
+      </aside>
+      <section class="guide-content">
+        <header class="guide-top">
+          <div><p class="guide-progress" id="guide-progress">ШАГ 1 ИЗ 4</p><h2 id="guide-title">Как подключить бота</h2></div>
+          <button class="dialog-close" type="button" data-close-guide aria-label="Закрыть инструкцию"><svg><use href="#i-close"/></svg></button>
+        </header>
+        <div class="guide-markers" role="progressbar" aria-label="Прогресс подключения" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"><span class="is-current"></span><span></span><span></span><span></span></div>
+        <div class="guide-copy"><p class="guide-instruction" id="guide-instruction">Откройте «Telegram для бизнеса» и выберите «Чат-боты».</p><p class="guide-note" id="guide-note">Раздел находится в настройках Telegram. Для бизнес-функций может потребоваться Telegram Premium.</p></div>
+        <div class="guide-reassurance" id="guide-reassurance" hidden><svg><use href="#i-spark"/></svg><span id="guide-reassurance-text">Оставьте включёнными права, необходимые для работы бота, и подтвердите подключение.</span></div>
+        <div class="guide-actions"><button class="guide-secondary" type="button" data-guide-back>Назад</button><button class="primary-button" type="button" data-guide-next><span>Далее</span><svg class="button-arrow"><use href="#i-arrow"/></svg></button></div>
+      </section>
+    </div>
+  </dialog>
+  <script src="svg.js"></script>
+  <script src="loader.js"></script>
+  <script src="landing.js"></script>
+  <script src="guide.js"></script>
+  <script src="motion.js"></script>
+  <script src="gift-core.js?v=2"></script>
+  <script src="inventory.js"></script>
+  <script id="telegram-web-app" async src="https://telegram.org/js/telegram-web-app.js?57"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
